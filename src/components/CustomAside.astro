@@ -1,0 +1,23 @@
+---
+const { 
+  backgroundColor = 'var(--sl-color-gray-1)', 
+  textColor = 'var(--sl-color-text)',
+  borderColor = 'var(--sl-color-gray-2)'
+} = Astro.props;
+---
+<aside class="custom-aside" style={`background: ${backgroundColor}; color: ${textColor}; border-color: ${borderColor};`}>
+  <slot />
+</aside>
+
+<style>
+  .custom-aside {
+    display: inline-block;
+    width: fit-content;
+    max-width: 90%;
+    margin: 1em auto;
+    padding: 1rem;
+    border: 1px solid;
+    border-radius: 0.5rem;
+    font-style: italic;
+  }
+</style>
