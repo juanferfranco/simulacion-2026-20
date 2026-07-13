@@ -38,14 +38,14 @@ export default defineConfig({
 					label: 'Unidades',
 					items: [
 						// Each item here is one entry in the navigation menu.
-						{ label: 'Unidad 1', slug: 'units/unit1' },
-						{ label: 'Unidad 2', slug: 'units/unit2' },
-						{ label: 'Unidad 3', slug: 'units/unit3' },
-						{ label: 'Unidad 4', slug: 'units/unit4' },
-						{ label: 'Unidad 5', slug: 'units/unit5' },
-						{ label: 'Unidad 6', slug: 'units/unit6' },
-						{ label: 'Unidad 7', slug: 'units/unit7' },
-						{ label: 'Unidad 8', slug: 'units/unit8'},
+						{ label: 'Unidad 1: Aleatoriedad', slug: 'units/unit1', badge: 'New' },
+						{ label: 'Unidad 2: Movimiento', slug: 'units/unit2' },
+						{ label: 'Unidad 3: Fuerzas', slug: 'units/unit3' },
+						{ label: 'Unidad 4: Oscilaciones', slug: 'units/unit4' },
+						{ label: 'Unidad 5: Partículas', slug: 'units/unit5' },
+						{ label: 'Unidad 6: Agentes', slug: 'units/unit6' },
+						{ label: 'Unidad 7: Complejidad', slug: 'units/unit7' },
+						{ label: 'Unidad 8: Integración', slug: 'units/unit8'},
 						// Marcar una novedad en una unidad
 						// { label: 'Unidad 8', slug: 'units/unit8',badge: 'New' },
 					],

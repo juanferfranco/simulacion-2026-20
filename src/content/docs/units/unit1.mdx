@@ -3,13 +3,16 @@ title: Unidad 1
 unitId: unit1
 ---
 
+import { LinkPreview, YouTube } from 'astro-embed';
+
 ## Aleatoriedad
 
 **Alineación con el libro:** unidad 0 de [*The Nature of Code*](https://natureofcode.com/random/)
 
 ## Propósito
 
-Introducir la simulación computacional a partir de la aleatoriedad como principio generativo. En esta unidad se explorarán caminatas aleatorias, distribuciones de probabilidad, ruido y variación como recursos para producir sistemas visuales e interactivos.
+Introducir la simulación computacional a partir de la aleatoriedad como principio generativo. En esta unidad se explorarán caminatas aleatorias, distribuciones de probabilidad, ruido y variación 
+como recursos para producir sistemas visuales e interactivos.
 
 ## Evaluación
 
@@ -26,4 +29,182 @@ Durante la unidad cada estudiante debe registrar su proceso en la bitácora de G
 
 ## Actividades
 
-Esta sección se irá completando semana a semana durante el desarrollo del curso.
+### Actividad 01
+
+#### La aleatoriedad en el arte generativo
+
+<YouTube 
+id="https://youtu.be/d2LC6Am9bZI?si=IK0T-uEZbbQHUncX" 
+title="Generative Art Exploration Chapter I Tracing the Roots: The History of Generative Art"
+/>
+
+<YouTube 
+id="https://youtu.be/_8DMEHxOLQE?si=7a4UMzEpKgSninVb"
+title="How To Draw With Code | Casey Reas"
+/>
+
+<YouTube 
+id="https://youtu.be/zBYVm2wYzDU?si=IOUOOhTEr5l9qTu1"
+title="Artist Spotlight | Who is Refik Anadol?"
+/>
+
+<YouTube 
+id="https://youtu.be/8tTGJvijoDw?si=vJd_8lXJ5X__litL"
+title="Discover Generative Artist Tyler Hobbs"
+/>
+
+
+Además de los videos, te quiero proponer que leas algunos ensayos de Tyler Hobbs para que puedas reflexionar de manera más profunda:
+
+<LinkPreview
+id="https://www.tylerxhobbs.com/words/randomness-in-the-composition-of-artwork"
+title="Randomness in the Composition of Artwork"
+/>
+
+<LinkPreview
+id="https://www.tylerxhobbs.com/words/probability-distributions-for-algorithmic-artists"
+title="Probability Distributions for Algorithmic Artists"
+/>
+
+<LinkPreview
+id="https://www.tylerxhobbs.com/words/a-randomized-approach-to-circle-packing"
+title="A Randomized Approach to Circle Packing"
+/>  
+
+
+
+
+
+### Actividad 02
+
+#### Caminatas aleatorias
+
+Analicemos juntos el código del ejemplo Example 0.1: A Traditional Random Walk del 
+[texto guía](https://natureofcode.com/random/#example-01-a-traditional-random-walk).
+
+### Actividad 03
+
+#### Distribuciones de probabilidad
+
+* Analicemos juntos y detenidamente [este](https://p5js.org/reference/p5/randomGaussian/) ejemplo.
+* En tus propias palabras cuál es la diferencia entre una distribución uniforme y una no uniforme de números aleatorios. 
+* Modifica el código de la caminata aleatoria para que utilice una distribución no uniforme, favoreciendo el movimiento hacia la derecha.
+
+### Actividad 04
+
+#### Distribución Normal
+
+* Analicemos juntos y detenidamente [este](https://natureofcode.com/random/#example-04-a-gaussian-distribution) ejemplo.
+* Crea un nuevo sketch en p5.js que represente una distribución normal, pero visualizándola de manera diferente a la del ejemplo.
+
+### Actividad 05
+
+#### Distribución personalizada: Lévy flight
+
+Analicemos juntos y detenidamente el concepto de [Lévy flight](https://natureofcode.com/random/#a-custom-distribution-of-random-numbers).
+
+Ahora vas a:
+
+* Crea un nuevo sketch en p5.js donde modifiques uno de los ejemplos anteriores y adiciones de Lévy flight.
+* Explica por qué usaste esta técnica y qué resultados esperabas obtener.
+
+
+### Actividad 06
+
+#### Ruido Perlin
+
+Analicemos junto el concepto de [ruido Perlin](https://natureofcode.com/random/#a-smoother-approach-with-perlin-noise) 
+analizando la figura 0.4: "A graph of Perlin noise values over time (left) and of random noise values over time (right)".
+
+Una vez has entendido el concepto de ruido Perlin, vas a pensar en una nueva manera de visualizarlo.
+
+* Crea un nuevo sketch en p5.js donde los visualices.
+* Explica el concepto qué resultados esberabas obtener.
+
+### Actividad 07
+
+#### Reto de diseño: Navegar la incertidumbre
+
+##### Encargo de diseño
+
+Un festival de ciencia y creatividad necesita una experiencia interactiva. Antes de ingresar al evento, 
+los visitantes encontrarán una pantalla interactiva que debe introducir una idea central:
+
+> La incertidumbre no es ausencia de reglas. Diferentes formas de aleatoriedad producen diferentes comportamientos y posibilidades.
+
+La pregunta orientadora de diseño es:
+
+> ¿Cómo convertir diferentes formas de aleatoriedad en diferentes significados?
+
+¿Qué tienes qué hacer? Diseña en p5.js una experiencia generativa en tiempo real en la que el visitante pueda 
+**influir sobre un sistema sin controlarlo completamente**.
+
+El sistema deberá interpretar los siguientes momentos:
+
+1. **Posibilidad:** todas las direcciones parecen posibles.
+2. **Tendencia:** una pequeña preferencia repetida termina construyendo una dirección.
+3. **Normalidad:** la mayoría de los recorridos permanece cerca de lo habitual.
+4. **Excepción:** un evento improbable permite descubrir un territorio nuevo.
+5. **Influencia:** la presencia del visitante transforma lo que puede ocurrir.
+
+No debes ilustrar literalmente las frases. Debes traducirlas en comportamientos, trayectorias, ritmos, concentraciones o transformaciones.
+
+##### Condiciones de diseño
+
+* La experiencia debe ser una sola pieza coherente, no cinco sketches separados.
+* Debe combinar significativamente al menos tres conceptos de la unidad: caminata aleatoria, distribuciones de probabilidad, distribución normal, Lévy flight o ruido Perlin.
+* La interacción debe modificar las probabilidades o reglas del sistema. No basta con cambiar colores, avanzar escenas o dibujar directamente.
+* El sistema debe continuar funcionando cuando nadie interactúa.
+* Cada ejecución debe producir variaciones sin perder su identidad visual.
+* Formato 9:16, full screen y ejecución interactiva en tiempo real.
+
+#####  Bitácora de la unidad
+
+El proceso deberá documentarse en la bitácora permanente del curso en GitHub. Para este reto debe incluir, como mínimo:
+
+* La intención conceptual de cada momento.
+* Experimentos y versiones intermedias.
+* Decisiones tomadas y alternativas descartadas.
+* Dificultades y soluciones.
+* Evidencias visuales y enlace al prototipo.
+* Uso dado a la IA generativa y cambios realizados sobre sus propuestas.
+
+La bitácora debe mostrar evolución mediante control de versión. No se considera suficiente subir únicamente el resultado final.
+
+##### Entrega y presentación
+
+En la última sesión de la unidad, vas a argumentar tu autoevaluación y presentar tu experiencia.
+
+##### Criterios de valoración
+
+**Autoevaluación y presentación del reto**
+
+Antes de la presentación, completa esta autoevaluación en tu bitácora. Para cada criterio:
+
+1. Indica si consideras que **cumples** o **no cumples**.
+2. Identifica en la bitácora la evidencia que respalda tu valoración.
+3. Prepárate para demostrar y argumentar tu valoración durante la presentación.
+
+| Criterio | Cumplo | No cumplo | Evidencia |
+|---|:---:|:---:|---|
+| **Encargo completo:** interpreto los cinco momentos dentro de un mismo sistema visual. | ☐ | ☐ | |
+| **Simulación con intención:** utilizo al menos tres conceptos de la unidad para comunicar las ideas del encargo. | ☐ | ☐ | |
+| **Interacción significativa:** la interacción modifica el comportamiento o las probabilidades del sistema, que también funciona sin intervención. | ☐ | ☐ | |
+| **Prototipo funcional:** la experiencia puede ejecutarse y recorrerse completa sin errores que impidan comprenderla. | ☐ | ☐ | |
+| **Proceso documentado:** la bitácora evidencia avances, decisiones, dificultades, soluciones, uso de IA y enlace al prototipo. | ☐ | ☐ | |
+
+**Durante la presentación**
+
+No debes describir todo el código ni leer la tabla. Debes presentar evidencias que permitan comprobar tu autoevaluación:
+
+1. Explica brevemente la intención de tu propuesta.
+2. Demuestra la experiencia y su interacción.
+3. Explica cómo una regla de simulación comunica una idea.
+4. Muestra una evidencia de evolución tomada de la bitácora.
+5. Señala honestamente cualquier criterio que consideres que todavía no cumples.
+
+:::note[Valoración]
+Cada criterio validado equivale a **1 punto**. La valoración final corresponde al profesor.
+:::
+
+
