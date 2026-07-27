@@ -1,15 +1,41 @@
 ---
 title: Unidad 2
+description: Diseñar una contradicción en movimiento con Motion 101 y Particle Life
 unitId: unit2
 ---
 
-## Vectores y movimiento
+import { LinkPreview, Vimeo, YouTube } from 'astro-embed';
 
-**Alineación con el libro:** unidad 1 de [*The Nature of Code*](https://natureofcode.com/vectors/)
+## Una contradicción en movimiento
+
+**Alineación con el libro:** unidad 1 de [*The Nature of Code*](https://natureofcode.com/vectors/), con énfasis en **Motion 101**, integración numérica y sistemas de partículas.
 
 ## Propósito
 
-Comprender el uso de vectores como herramienta fundamental para representar posición, velocidad, aceleración y movimiento dentro de una simulación. La unidad busca que el estudiante pueda construir sistemas dinámicos a partir de relaciones matemáticas simples y observables.
+En esta unidad no estudiaremos el movimiento únicamente para hacer que algo se desplace. Lo estudiaremos para diseñar **relaciones que produzcan comportamiento**.
+
+La pregunta central es:
+
+> ¿Cómo puede una intención conceptual convertirse en un sistema de reglas cuyo movimiento haga perceptible una contradicción?
+
+Al finalizar, podrás:
+
+- interpretar geométricamente la posición, la velocidad y la aceleración;
+- explicar qué significa integrar numéricamente un sistema dinámico;
+- construir un sistema de partículas a partir de relaciones dependientes de la distancia;
+- distinguir entre una trayectoria que se programa directamente y un comportamiento que emerge;
+- diseñar una intención, sus entidades, relaciones, parámetros, invariantes y variaciones;
+- justificar por qué una configuración produce ciertos comportamientos y seleccionar resultados coherentes con la intención.
+
+## Ruta de la unidad
+
+| Actividad | Pregunta | Resultado |
+|---|---|---|
+| 01 | ¿Cómo puede una obra hacer que una idea se sienta como movimiento? | Referentes y observaciones sobre Max Cooper |
+| 02 | ¿Cómo pasa un sistema de una regla matemática a una trayectoria? | Modelo Motion 101 e integración numérica |
+| 03 | ¿Cómo producen las relaciones locales patrones colectivos? | Análisis de Clusters y Particle Life |
+| 04 | ¿Qué significa diseñar un sistema y no solo una imagen? | Marco de intención y mentalidad generativa |
+| 05 | ¿Cómo diseñar una contradicción que permanezca en movimiento? | Sistema generativo, bitácora y presentación |
 
 ## Evaluación
 
@@ -17,13 +43,449 @@ Esta unidad tiene un valor total de **12.5%** de la nota final del curso.
 
 | Evidencia | Porcentaje |
 |---|---:|
-| Examen de unidad | 6.25% |
-| Reto de diseño de unidad | 6.25% |
+| Evaluación conceptual | 6.25% |
+| Reto de diseño: una contradicción en movimiento | 6.25% |
 
 ## Bitácora
 
-Durante la unidad cada estudiante debe registrar su proceso en la bitácora de GitHub, usando control de versión y dejando evidencia de experimentos, decisiones, avances y reflexiones.
+Durante la unidad registrarás en tu bitácora de GitHub las observaciones, diagramas, experimentos, decisiones, versiones, resultados seleccionados y descartes. La bitácora debe hacer visible cómo pasaste de una intención a un sistema de relaciones.
 
-## Actividades
+---
 
-Esta sección se irá completando semana a semana durante el desarrollo del curso.
+## Actividad 01
+
+### Diseñar una sensación de movimiento
+
+Abriremos la unidad con el trabajo del artista y compositor electrónico **Max Cooper**. No lo veremos como una referencia estética para copiar, sino como un caso para preguntar cómo una idea, una estructura y una experiencia pueden estar diseñadas simultáneamente.
+
+<YouTube
+  id="https://www.youtube.com/watch?v=_7wKjTf_RlI"
+  title="Max Cooper — video de apertura"
+/>
+
+Explora su sitio y observa cómo organiza música, imagen, instalaciones, colaboraciones y textos alrededor de ideas como estructura, memoria, naturaleza y conciencia:
+
+<LinkPreview
+  id="https://maxcooper.net/"
+  title="Max Cooper — sitio oficial"
+/>
+
+### ¿Quién es Max Cooper y qué lo hace especial?
+
+Max Cooper es compositor electrónico, artista multidisciplinar, fundador del sello Mesh y antiguo científico. Tiene un doctorado en biología computacional y ha desarrollado durante años una práctica que conecta música, visualidad, instalaciones inmersivas, arquitectura, datos y preguntas sobre la experiencia humana.
+
+Lo especial de su trabajo no es simplemente que combine música y gráficos. Es que suele partir de una **idea o estructura** y construye un sistema audiovisual capaz de hacerla sensible: una forma matemática puede convertirse en ritmo; una investigación científica puede convertirse en una experiencia corporal; una colección de memorias puede convertirse en una imagen incompleta y cambiante. La tecnología aparece como medio para pensar y sentir, no como el tema principal de la obra.
+
+### Un trabajo reciente: *The Shape Of Memory*
+
+Visita [*The Shape Of Memory*](https://maxcooper.net/the-shape-of-memory), un trabajo de 2026 realizado con Factory Fifteen. El proyecto parte de imágenes de recuerdos aportadas por la audiencia. Esas imágenes fueron transformadas mediante **Gaussian splats** en modelos tridimensionales de apariencia pictórica.
+
+La técnica es importante, pero la decisión de diseño es más importante: sus artefactos, pérdidas y deformaciones sirven para hablar de cómo la memoria se fragmenta, se mezcla y se reescribe cada vez que la recordamos. Puedes ver el proyecto audiovisual desde la página oficial o [abrir directamente el video](https://www.youtube.com/watch?v=oJzmamTmr8o).
+
+<LinkPreview
+  id="https://maxcooper.net/the-shape-of-memory"
+  title="The Shape Of Memory — Max Cooper y Factory Fifteen"
+/>
+
+### Observación en clase
+
+Mientras ves los materiales, registra en tu bitácora:
+
+1. ¿Qué parece estar diseñado de forma deliberada?
+2. ¿Qué parece emerger de reglas, datos, transformaciones o interacciones?
+3. ¿Qué relación existe entre la intención conceptual y el comportamiento visual?
+4. ¿Qué permanecería reconocible si cambiaran los parámetros o una ejecución concreta?
+5. ¿Qué diferencia hay entre producir una imagen parecida y diseñar un sistema que pueda producir una familia de imágenes?
+
+**Idea de transición:** en las siguientes actividades vamos a construir el mecanismo elemental que permite que una intención se manifieste como movimiento: una cadena de vectores y actualizaciones.
+
+---
+
+## Actividad 02
+
+### Motion 101: una geometría de la actualización
+
+Lee y ejecuta los ejemplos de [*The Nature of Code — Vectors*](https://natureofcode.com/vectors/), especialmente [Motion with Vectors](https://natureofcode.com/vectors/#motion-with-vectors) y [Motion 101](https://natureofcode.com/vectors/#example-18-motion-101-velocity-and-constant-acceleration).
+
+### Tres vectores, tres funciones
+
+| Vector | Interpretación geométrica | Pregunta que responde |
+|---|---|---|
+| **Posición** `x` | Un punto o coordenada dentro del espacio | ¿Dónde está el objeto ahora? |
+| **Velocidad** `v` | Una flecha de desplazamiento: dirección y cantidad de cambio por unidad de tiempo | ¿Hacia dónde y cuánto se moverá? |
+| **Aceleración** `a` | Una flecha que cambia la velocidad; puede cambiar su magnitud o su dirección | ¿Cómo está cambiando el movimiento? |
+
+La aceleración no significa solamente “ir más rápido”. Girar también es acelerar: aunque la rapidez sea constante, la dirección de la velocidad está cambiando.
+
+En el modelo de *The Nature of Code*, la cadena es:
+
+```text
+aceleración → velocidad → posición → imagen
+```
+
+En código, para cada paso:
+
+```js
+velocity.add(acceleration);
+velocity.limit(topSpeed);
+position.add(velocity);
+```
+
+Esto es Motion 101: una regla muy pequeña que permite que un sistema conserve memoria de su estado anterior. La posición no salta a un lugar elegido al azar; la aceleración modifica la velocidad y la velocidad modifica la posición.
+
+### ¿Dónde aparece la integración numérica?
+
+Las ecuaciones del movimiento describen cambios continuos, pero un programa actualiza el sistema en instantes discretos. **Integrar numéricamente** significa aproximar la evolución continua mediante pequeños pasos de tiempo `Δt`.
+
+Si una partícula tiene aceleración `a`, velocidad `v` y posición `x`, una versión explícita del paso sería:
+
+$$
+v_{n+1}=v_n+a_n\Delta t
+$$
+
+$$
+x_{n+1}=x_n+v_n\Delta t
+$$
+
+Sin embargo, el orden usado por Motion 101 —primero actualizar la velocidad y luego usarla para actualizar la posición— corresponde a una forma de **Euler semiimplícito**, también llamada **Euler simpléctico** cuando el sistema tiene una estructura hamiltoniana:
+
+$$
+v_{n+1}=v_n+a_n\Delta t
+$$
+
+$$
+x_{n+1}=x_n+v_{n+1}\Delta t
+$$
+
+En los ejemplos del libro, `Δt` está implícito en cada frame y suele tomarse como `1`. En una simulación más controlada conviene hacer explícito el tiempo y escalar tanto la aceleración como la velocidad con `Δt`.
+
+Toda integración introduce error. Si `Δt` es muy grande, si una fuerza cambia demasiado rápido o si las relaciones producen valores extremos, la simulación puede oscilar, explotar o atravesar una frontera. El límite de velocidad, la fricción y la elección de un paso pequeño no son adornos: son decisiones de estabilidad.
+
+### Energía: conservarla, perderla o inyectarla
+
+En un sistema ideal con fuerzas **conservativas**, existe una energía potencial `U` y la energía mecánica total
+
+$$
+E=K+U=\frac{1}{2}mv^2+U(x)
+$$
+
+permanece constante. Una fuerza conservativa no depende del camino recorrido: el trabajo entre dos puntos depende solo de esos puntos y el trabajo en una trayectoria cerrada es cero. La gravedad ideal y un resorte ideal son modelos habituales.
+
+En un sistema **no conservativo**, la energía mecánica puede cambiar. La fricción la disipa; un motor, una entrada del usuario o una fuerza autoimpulsada la inyecta; un límite de velocidad corta o modifica el estado de manera artificial. Las fuerzas asimétricas de Particle Life tampoco tienen por qué obedecer una energía potencial compartida: son reglas de comportamiento para entidades autoimpulsadas, no una reconstrucción literal de la física.
+
+Esto explica una diferencia importante:
+
+- En un sistema conservativo buscamos que la energía se comporte como una cantidad que debe preservarse aproximadamente.
+- En un sistema no conservativo diseñamos cómo se pierde, se acumula, se libera o se inyecta la energía para producir un comportamiento.
+
+Incluso en un sistema conservativo, un integrador sencillo puede producir error. Euler explícito tiende a generar deriva de energía en osciladores; Euler semiimplícito suele mantener la energía acotada durante más tiempo, aunque no la conserve exactamente.
+
+### ¿Por qué aparece Verlet?
+
+Verlet aparece como una respuesta al problema de acumular error energético y de fase en integraciones largas. La versión de **velocity Verlet** usa la aceleración en los extremos del intervalo:
+
+$$
+x_{n+1}=x_n+v_n\Delta t+\frac{1}{2}a_n\Delta t^2
+$$
+
+$$
+v_{n+1}=v_n+\frac{1}{2}(a_n+a_{n+1})\Delta t
+$$
+
+Sus ventajas habituales en sistemas conservativos son una mejor estabilidad a largo plazo, reversibilidad temporal aproximada y un comportamiento energético más razonable para órbitas, resortes y otras dinámicas suaves. La versión de posición también puede calcular la nueva posición usando las dos posiciones anteriores y prescindir de guardar la velocidad explícitamente.
+
+Verlet no es automáticamente “más realista” ni siempre es mejor. En Particle Life hay interacciones asimétricas, umbrales, fricción, límites de velocidad y posibles fuerzas discontinuas. En ese contexto, Motion 101 es valioso porque hace legible la cadena causal y permite diseñar la energía como parte del comportamiento. Probaremos Verlet para entender el contraste, no para reemplazar una decisión de diseño por una receta técnica.
+
+### Ejercicios
+
+1. Reescribe un ejemplo de una pelota que rebota utilizando `position`, `velocity` y `acceleration` como vectores.
+2. Dibuja sobre una captura las flechas de posición, velocidad y aceleración. Explica qué cambia entre un frame y el siguiente.
+3. Implementa el mismo resorte con Euler explícito, Euler semiimplícito y velocity Verlet. Registra qué pasa con la amplitud y la energía aparente.
+4. Añade fricción y luego `topSpeed`. ¿Cuál de las dos operaciones disipa o limita energía? ¿Qué parte es física aproximada y qué parte es decisión del sistema?
+5. Cambia una fuerza simétrica por una relación `A → B` distinta de `B → A`. Describe qué tipo de movimiento se vuelve posible.
+
+---
+
+## Actividad 03
+
+### De Clusters a Particle Life
+
+Particle Life no aparece de la nada. Es una variación simplificada de **Clusters**, el sistema de partículas asimétrico con patrones emergentes creado por Jeffrey Ventrella.
+
+<LinkPreview
+  id="https://www.ventrella.com/Clusters/"
+  title="Clusters — Jeffrey Ventrella"
+/>
+
+Comienza jugando con los ecosistemas de [Clusters](https://www.ventrella.com/Clusters/). Cambia el número de partículas, el número de especies, los colores, las trazas y la pausa. Después mira la explicación en video:
+
+<Vimeo
+  id="https://vimeo.com/1048238799"
+  title="Clusters — an asymmetrical particle system with emergent patterns"
+/>
+
+Lee la [introducción a Clusters](https://www.ventrella.com/Clusters/intro.html). Allí Ventrella presenta partículas como entidades con posición y velocidad, especies con reglas compartidas y ecosistemas como conjuntos de especies que se afectan localmente. Lo decisivo es que cada especie puede tener una respuesta distinta ante cada otra especie.
+
+### De una regla local a una entidad ambigua
+
+La interacción puede describirse así:
+
+1. Cada partícula observa únicamente a otras partículas dentro de un horizonte de interacción.
+2. La distancia determina qué fuerza se activa y con qué intensidad.
+3. La especie de quien observa y la especie observada seleccionan una relación de atracción, repulsión o indiferencia.
+4. Las aceleraciones de todas las relaciones se acumulan.
+5. Motion 101 integra la aceleración en velocidad y posición.
+6. La repetición de reglas locales produce agrupaciones, persecuciones, rupturas, fusiones y formas que no fueron dibujadas una por una.
+
+Si una partícula verde persigue a una amarilla, pero la amarilla huye de la verde, la relación es asimétrica. No hay una reacción igual y opuesta obligatoria. En el universo de Clusters esto se interpreta como una entidad autoimpulsada: la energía no proviene de una física cerrada, sino de una regla de comportamiento.
+
+### Cuando aparece Particle Life
+
+Ventrella explica que **Clusters fue la inspiración de Particle Life**, la variación de Tom Mohr. Particle Life simplifica las reglas para hacerlas más fáciles de explorar y conservar una gran cantidad de comportamientos emergentes.
+
+<YouTube
+  id="https://www.youtube.com/watch?v=p4YirERTVF0"
+  title="Particle Life — introducción"
+/>
+
+Lee y mira [la explicación del código detrás de Particle Life](https://www.youtube.com/watch?v=scvuli-zcRc). Luego compara dos implementaciones:
+
+- [Particle Life App de Tom Mohr](https://github.com/tom-mohr/particle-life-app): aplicación interactiva de escritorio y proyecto de código abierto.
+- [Particle Life en Sandbox Science](https://sandbox-science.com/particle-life): implementación web para experimentar con las relaciones.
+
+### El algoritmo como espacio de diseño
+
+Una forma útil de pensar el sistema es:
+
+```text
+especie de i + especie de j + distancia → fuerza sobre i
+fuerzas acumuladas → aceleración de i
+aceleración → velocidad → posición
+```
+
+La matriz de relaciones puede representarse así:
+
+| Desde / hacia | A | B | C |
+|---|---:|---:|---:|
+| **A** | repulsión | atracción | indiferencia |
+| **B** | atracción | repulsión | atracción |
+| **C** | indiferencia | repulsión | atracción |
+
+Los valores no son “la estética” de la obra. Son hipótesis sobre relaciones. Cambiar `A → B` cambia lo que una población hace; cambiar la cantidad de partículas cambia el peso de esa conducta; cambiar el alcance cambia cuánto puede anticipar una partícula; cambiar la fricción cambia si la relación se apaga o continúa.
+
+### Ejercicio de análisis
+
+Elige dos configuraciones de Clusters o Particle Life y registra:
+
+- especies y cantidades aproximadas;
+- relaciones que parecen atractivas, repulsivas o indiferentes;
+- una relación posiblemente asimétrica;
+- alcance de interacción y velocidad de respuesta;
+- comportamiento local observado;
+- patrón colectivo emergente;
+- qué propiedad permanece reconocible entre ejecuciones distintas.
+
+No describas solamente “se ve orgánico” o “se ve bonito”. Formula una relación causal: **“cuando aumento ___, espero que ___ porque ___”**.
+
+---
+
+## Actividad 04
+
+### Retomar la Actividad 01 de Diseño Generativo
+
+Antes de plantear el reto, retomamos la [Actividad 01 de la Unidad 2 de Diseño Generativo](https://juanferfranco.github.io/interactivos1-2026-20/units/unit2/#actividad-01): **¿Qué es el diseño y el arte generativos?**
+
+La idea que nos interesa traer a esta unidad es esta:
+
+> El diseño generativo consiste en diseñar un sistema capaz de producir diseños, en vez de diseñar directamente una única pieza final.
+
+En un proceso tradicional puedes decidir directamente la forma final. En un proceso generativo decides una intención, entidades, relaciones, entradas, reglas, límites, variaciones y criterios de selección. El sistema produce una familia de resultados y tú debes observar, comparar, modificar y curar.
+
+### Input → process → output
+
+Usaremos el esquema de Patrik Hübner:
+
+```text
+input → process → output
+```
+
+En Particle Life, por ejemplo:
+
+| Entrada | Proceso | Salida |
+|---|---|---|
+| semilla aleatoria, cantidades, matriz y parámetros | calcular distancias, fuerzas, integración y bordes en cada frame | trayectorias, agrupaciones, ritmos y formas emergentes |
+
+La unidad de diseño no es la posición individual de cada partícula. Es la relación que produce muchas posiciones posibles.
+
+No es suficiente decir “quiero usar partículas”. La pregunta generativa es:
+
+> ¿Qué quiero comunicar o hacer sentir, y qué sistema de relaciones puede materializarlo?
+
+### Las ocho operaciones de la mentalidad generativa
+
+1. **Intención:** ¿qué transformación, sensación, tensión o idea debe experimentar quien observa?
+2. **Entidades:** ¿qué elementos existen? Partículas, especies, campos, fronteras, memorias o señales.
+3. **Relaciones:** ¿cómo se afectan? Atracción, repulsión, persecución, cooperación, competencia o indiferencia.
+4. **Entradas:** ¿qué alimenta el sistema? Semilla, tiempo, audio, interacción, datos o decisiones del participante.
+5. **Reglas:** ¿cómo cambia el estado de un frame al siguiente?
+6. **Invariantes:** ¿qué debe permanecer para conservar la identidad del sistema?
+7. **Variabilidad:** ¿qué puede ser diferente en cada ejecución sin destruir esa identidad?
+8. **Curaduría y reflexión:** ¿qué resultado es significativo y cuál es solo un accidente interesante?
+
+### Arte generativo y diseño generativo
+
+Ambos pueden usar el mismo algoritmo. La diferencia principal está en el propósito y en los criterios de juicio:
+
+| Arte generativo | Diseño generativo |
+|---|---|
+| Puede partir de una pregunta poética, estética o crítica. | Parte de una intención comunicativa, funcional o experiencial. |
+| Puede valorar la ambigüedad y la interpretación abierta. | Debe conservar coherencia con un contexto, audiencia o restricción. |
+| El propio sistema puede ser la exploración. | El sistema se diseña para cumplir una función más allá de producir novedades. |
+
+El reto de esta unidad puede ser ambas cosas: una exploración artística de la emergencia y, al mismo tiempo, un diseño generativo con una intención clara que pueda defenderse.
+
+### Taller: de la palabra a la relación
+
+Completa antes de programar:
+
+```text
+Quiero explorar la tensión entre __________ y __________.
+
+Quiero que esa tensión se vuelva perceptible cuando __________.
+
+La relación principal será: __________ atrae / repele / ignora a __________.
+
+Espero que emerja __________, pero quiero conservar __________.
+```
+
+Después traduce cada frase a una decisión observable. Por ejemplo, “pertenencia e individualidad” no se resuelve con un color cálido y uno frío: puede requerir una población que agrupa, otra que se separa y una relación asimétrica que mantenga el conflicto activo.
+
+---
+
+## Actividad 05
+
+### Reto de diseño: una contradicción en movimiento
+
+Diseña un sistema generativo inspirado en **Particle Life** que explore una tensión o contradicción significativa mediante las relaciones entre distintas poblaciones de partículas.
+
+> **No diseñarás una animación fija. Diseñarás y justificarás el sistema de relaciones que produce el movimiento.**
+
+### Intención
+
+Formula la tensión:
+
+> Quiero explorar la tensión entre __________ y __________.
+
+Describe brevemente cómo esperas que se manifieste en el comportamiento del sistema.
+
+La contradicción no debe depender solamente de colores, nombres o símbolos. Debe estar incorporada en sus reglas.
+
+### Diseño del sistema
+
+Define y justifica:
+
+- tipos de partículas;
+- cantidad de partículas de cada tipo;
+- matriz de atracción, repulsión o indiferencia;
+- intensidad y alcance de cada relación;
+- distancias de interacción;
+- fricción y velocidad máxima;
+- distribución inicial;
+- parámetros constantes y variables;
+- apariencia e interacción, cuando existan.
+
+Un **tipo** es una categoría de comportamiento, no necesariamente uno de los polos de la contradicción. La **cantidad** determina la presencia y el peso de ese comportamiento dentro del sistema.
+
+Para cada decisión responde:
+
+> Seleccioné __________ porque quiero hacer perceptible __________. Espero que produzca __________.
+
+No es suficiente afirmar que un valor “se ve mejor” o produce algo interesante. Todas las decisiones de parametrización deben ser coherentes con la intención y estar justificadas mediante el comportamiento que esperas producir.
+
+### Condiciones
+
+El sistema debe incluir:
+
+1. posición, velocidad y aceleración;
+2. varias poblaciones de partículas;
+3. interacciones dependientes de la distancia;
+4. relaciones de atracción, repulsión o indiferencia;
+5. al menos una relación asimétrica;
+6. variabilidad entre ejecuciones;
+7. comportamientos emergentes, no trayectorias predefinidas;
+8. una identidad reconocible entre sus diferentes resultados.
+
+Las partículas pueden ser círculos o puntos. Utiliza otras formas únicamente cuando su geometría, orientación o transformación contribuya a la intención o permita comprender mejor el comportamiento.
+
+### Proceso de trabajo
+
+1. Formula la tensión y la intención.
+2. Escribe las relaciones en lenguaje natural.
+3. Traduce esas relaciones a la matriz y los parámetros.
+4. Predice el comportamiento esperado.
+5. Experimenta con diferentes configuraciones.
+6. Registra los cambios y sus efectos.
+7. Selecciona los resultados más coherentes con la intención.
+8. Explica qué diseñaste y qué emergió.
+
+Puedes utilizar inteligencia artificial para apoyar la programación, la exploración y la documentación. Sin embargo, debes comprender, justificar y modificar las decisiones fundamentales del sistema.
+
+### Entregables
+
+1. **Sistema generativo funcional.**
+2. **Ficha breve** con tensión e intención; tipos y cantidades; reglas; matriz; parámetros y justificación; invariantes y variables.
+3. **Registro de pruebas** con ajustes, hallazgos y descartes.
+4. **Varias manifestaciones** del mismo sistema, producidas con distintas semillas o configuraciones permitidas.
+5. **Autoevaluación sustentada** y presentación oral.
+
+### Autoevaluación
+
+Valora cada criterio entre **0% y 100%** y susténtalo con evidencias de tu bitácora y tu prototipo.
+
+| Criterio | Peso | Valoración | Aporte |
+|---|---:|---:|---:|
+| La intención es clara y perceptible en el comportamiento. | 20% |  |  |
+| Los tipos, cantidades, matriz y parámetros están justificados desde la intención. | 25% |  |  |
+| Comprendo y puedo modificar el funcionamiento técnico del sistema. | 20% |  |  |
+| El sistema produce variaciones con una identidad reconocible. | 15% |  |  |
+| Experimenté, comparé, seleccioné y descarté con criterios claros. | 10% |  |  |
+| Puedo distinguir y sustentar lo diseñado y lo emergente. | 10% |  |  |
+| **Total** | **100%** |  |  |
+
+Para cada criterio:
+
+```text
+aporte = valoración × peso ÷ 100
+nota propuesta = puntaje total ÷ 20
+```
+
+La nota propuesta estará entre 0 y 5 y deberá ser defendida durante la presentación.
+
+### Presentación
+
+En la presentación:
+
+1. formula tu intención en una frase;
+2. muestra una relación central de la matriz y explica qué comportamiento esperabas;
+3. ejecuta varias manifestaciones del sistema;
+4. compara un resultado seleccionado con un descarte;
+5. explica qué parte fue diseñada y qué parte emergió;
+6. señala una decisión técnica que cambiarías y por qué.
+
+La presentación no consiste en leer el código. Consiste en defender el diseño del sistema.
+
+> **No representes una contradicción mediante partículas. Diseña y justifica las relaciones que hacen que esa contradicción permanezca en movimiento.**
+
+---
+
+## Fuentes y referencias
+
+- [*The Nature of Code* — Vectores y Motion 101](https://natureofcode.com/vectors/)
+- [Max Cooper — sitio oficial](https://maxcooper.net/)
+- [Max Cooper — biografía](https://maxcooper.net/biography)
+- [Max Cooper — *The Shape Of Memory*](https://maxcooper.net/the-shape-of-memory)
+- [Jeffrey Ventrella — Clusters](https://www.ventrella.com/Clusters/)
+- [Jeffrey Ventrella — introducción a Clusters](https://www.ventrella.com/Clusters/intro.html)
+- [Tom Mohr — Particle Life App](https://github.com/tom-mohr/particle-life-app)
+- [Particle Life — Sandbox Science](https://sandbox-science.com/particle-life)
+- [Actividad 01 de Diseño Generativo](https://juanferfranco.github.io/interactivos1-2026-20/units/unit2/#actividad-01)
