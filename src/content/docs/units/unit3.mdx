@@ -1,24 +1,291 @@
 ---
-title: Unidad 3
+title: Unidad 3 · Fuerzas
+description: Diseñar e interpretar un instrumento visual generativo basado en fuerzas.
 unitId: unit3
 ---
 
-## Fuerzas
+import { Aside } from '@astrojs/starlight/components';
+import { LinkPreview, Vimeo, YouTube } from 'astro-embed';
 
-**Alineación con el libro:** unidad 2 de [*The Nature of Code*](https://natureofcode.com/forces/)
+
+## Diseñar un instrumento de fuerzas
+
+**Alineación con el libro:** unidad 2 de [*The Nature of Code*](https://natureofcode.com/forces/).
+
+**Duración:** cuatro sesiones. **Valor:** 12.5% de la nota final del curso.
+
+En esta unidad las fuerzas dejan de ser únicamente un tema de programación. Serán el material con el que diseñarás un sistema dinámico, lo probarás y lo tocarás en tiempo real.
+
+<Aside type="tip" title="La pregunta que guía la unidad">
+
+¿Cómo puede una persona interpretar una pieza musical mediante un sistema de partículas cuyo comportamiento surge de fuerzas que comprende, puede verificar y puede modificar?
+
+</Aside>
 
 ## Propósito
 
-Explorar la aplicación de fuerzas en sistemas simulados, incluyendo gravedad, fricción, resistencia, atracción y repulsión. La unidad busca que el estudiante comprenda cómo las fuerzas modifican la aceleración y permiten construir comportamientos dinámicos más complejos.
+La IA generativa puede producir una gran cantidad de código. Por eso el rigor de esta unidad no consiste en demostrar que escribiste cada línea manualmente. Consiste en demostrar que sabes:
 
-## Evaluación
+- construir un modelo mental del sistema;
+- diseñar fuerzas y predecir el comportamiento que deberían producir;
+- localizar las partes conceptualmente importantes del código generado;
+- aislar, probar y corregir una implementación;
+- convertir algunos parámetros en controles expresivos;
+- interpretar el sistema en vivo y explicar tus decisiones.
 
-Esta unidad tiene un valor total de **12.5%** de la nota final del curso.
+La idea central es:
 
-## Bitácora
+> La IA no elimina el rigor. Desplaza el rigor desde «yo escribí todo el código» hacia «sé qué construí, por qué funciona, cómo comprobarlo y cómo modificarlo».
 
-Durante la unidad cada estudiante debe registrar su proceso en la bitácora de GitHub, usando control de versión y dejando evidencia de experimentos, decisiones, avances y reflexiones.
 
 ## Actividades
 
-Esta sección se irá completando semana a semana durante el desarrollo del curso.
+### Actividad 01: referentes para la unidad
+
+Los referentes no son modelos visuales para copiar. Son casos para ampliar la pregunta de diseño.
+
+| Referente | Qué observar |
+|---|---|
+| [Robert Hodgin](https://roberthodgin.com/) | Partículas, simulación, emergencia y sistemas generativos usados como material artístico. Observa cómo una regla simple puede producir una forma compleja sin prescribir cada trayectoria. |
+| [Lumicles](https://www.lumicles.xyz/) | Un sistema masivo de partículas y campos de fuerzas que puede modificarse en tiempo real. Es un referente de posibilidad técnica y artística, no una estética que debas reproducir. |
+| [*Scribble* — Golan Levin y colaboradores](https://acg.media.mit.edu/people/golan/scribble/index.html) | La idea de un sistema audiovisual como instrumento: una estructura puede estar preparada, pero la experiencia se completa mediante interpretación e improvisación. |
+
+
+Vamos a ver en particular:
+
+<YouTube id="https://youtu.be/l7tm24x0hzA?si=xOHmaucIlTFUf98v" 
+title="Golan Levin on software as art" 
+/>
+
+<LinkPreview id="https://roberthodgin.com/project/collider" 
+title="Collider" />
+
+<LinkPreview id="https://roberthodgin.com/project/magnetosphere" 
+title="magnetosphere" 
+/>
+
+<Vimeo id="https://vimeo.com/8581392?fl=pl&fe=vl" title="Magnetosphere, revisited (from 2007)" 
+/>
+
+<YouTube id="https://www.youtube.com/watch?v=2TYPhw0QwLI" title="Lumicles" 
+/>
+
+Al revisar cada referente, pregunta: ¿Qué parte es sistema?, ¿Qué parte es instrumento?, ¿Qué parte se interpreta?, ¿Qué parte emerge?
+
+Algunos ejemplos de visualismo y de música generativa que no son referentes de diseño, pero sí de posibilidad:
+
+<YouTube id="https://youtu.be/DaiuHTYvF2U?si=0RJvWVtsqAMbnlZk" title="Floating Points - 'Key103' (Official Video)"
+/>
+
+<LinkPreview id="https://www.akikopainting.com/" title="https://www.akikopainting.com/" 
+/>
+
+<YouTube 
+id="https://youtu.be/58Dd7VIwHBg?si=c2EL16ifiWg4CPao" 
+title="Storytelling of the Alive Painting ‘Bubble’
+"/>
+
+<YouTube 
+id="https://youtu.be/OWe6ORQLBBY?si=JbmgX41YcjdqOpLI"
+title="【Full】Alive Painting 2hours Solo 'GIFUKEI' exhibition at Tokyo University of the Arts"
+/>
+
+
+### Actividad 02: laboratorio de fuerzas
+
+En esta actividad vamos a experimentar con los conceptos de la unidad y construir un mapa mental del sistema para que puedas usar de manera 
+efectiva la IA generativa. La idea es que puedas aislar, probar y modificar fuerzas sin perder el control del sistema.
+
+Trabajaremos con el [repositorio del caso de estudio `forces-instrument-u3`](https://github.com/juanferfranco/forces-instrument-u3).
+
+**El mapa que debes poder señalar**:
+
+| Responsabilidad | Dónde mirar en el proyecto base | Pregunta que debes poder responder |
+|---|---|---|
+| Estado | `src/simulation/createSimulation.js` (`positionBuffer`, `velocityBuffer`) | ¿Qué datos representan el estado de cada partícula y dónde viven? |
+| Fuerzas | bloque `force` del compute en `createSimulation.js` | ¿Qué fuerzas se suman y qué ecuación o dirección representa cada una? |
+| Integración | actualización de `v` y luego de `p` | ¿Cómo pasa una fuerza a aceleración, velocidad y posición? |
+| Render | `SpriteNodeMaterial` e `InstancedMesh` | ¿Cómo se dibuja el estado calculado sin volver a simularlo? |
+| Controles | `src/main.js` y `src/ui/labPanel.js` | ¿Qué parámetros puede tocar el intérprete y por qué esos? |
+
+**El modelo mental mínimo es**:
+
+```text
+CONTROLES DEL INTÉRPRETE
+          ↓
+PARÁMETROS / UNIFORMS
+          ↓
+GPU COMPUTE
+estado → fuerzas → aceleración → velocidad → posición
+          ↓
+BUFFERS DE POSICIÓN Y VELOCIDAD
+          ↓
+RENDER
+material + instancias + cámara → pantalla
+```
+
+Esta unidad no se trata de aprender a usar la API de Three.js, TSL o WebGPU. Se trata de comprender cómo funciona un sistema de fuerzas y cómo puedes aislar, probar y modificar sus partes. 
+Como vamos a usar IA generativa lo que buscamos es que comprendas lo suficiente para leer, modificar y verificar el sistema.
+
+
+| Concepto | Comprensión mínima para esta unidad |
+|---|---|
+| Scene | Contenedor de los objetos que pueden renderizarse; no simula por sí misma. |
+| Camera | Transformación que convierte el mundo 3D en una vista de pantalla. |
+| WebGPURenderer | Coordina el `compute` y el `render`; se inicializa antes de usarse. |
+| Animation loop | En cada frame se actualiza el estado, se actualiza la cámara y se renderiza. |
+| GPU y buffers | El estado masivo de posición y velocidad permanece en memoria de la GPU para actualizar muchas partículas en paralelo. |
+| Compute y TSL | `Fn(...).compute(count)` expresa la regla que se ejecuta conceptualmente una vez por partícula. TSL es la notación; el contenido es el modelo de fuerzas. |
+| Uniforms | Puentes entre los controles JavaScript y los parámetros que usa el compute. |
+| Fuerzas e integración | La fuerza total cambia la velocidad; la velocidad actualizada cambia la posición. El proyecto usa Euler semiimplícito. |
+| Instancing | Una geometría y un material se reutilizan para dibujar muchas partículas sin crear miles de objetos JavaScript. |
+| Interacción | El puntero se transforma de coordenadas de pantalla a una posición en el plano de simulación. |
+| Vite | `npm run dev` sirve el proyecto; `npm run build` construye; `npm run preview` verifica el build real. |
+
+**Ecuaciones mínimas del caso base**:
+
+No tienes que memorizar TSL, pero sí reconocer qué significa cada bloque del modelo:
+
+| Fuerza o regla | Modelo mínimo | Qué debes poder predecir |
+|---|---|---|
+| Viento o fuerza constante | $F_w = c$ | La aceleración conserva la dirección de `c`; con velocidad inicial cero, la velocidad crece en esa dirección. |
+| Radial suavizada | $r = a - p$, $d = \max(\lVert r\rVert, s)$, $F_r = \hat{r}\,k/d^2$ | Con $k > 0$ la partícula tiende al atractor; con $k < 0$ la tendencia se invierte. `s` evita una singularidad cerca del atractor. |
+| Vórtice | $F_t = \hat{z} \times \hat{r}\,k_t$ | Aparece una componente tangencial alrededor del eje; no es una trayectoria circular prescrita. |
+| Drag lineal | $F_d = -c_d v$ | La fuerza se opone a la velocidad y disipa movimiento. |
+| Integración Euler semiimplícita | $v_{t+\Delta t}=v_t+F\Delta t$; $p_{t+\Delta t}=p_t+v_{t+\Delta t}\Delta t$ | La fuerza cambia primero la velocidad y esa velocidad actualizada cambia la posición. |
+
+**LAB: comprender antes de interpretar** 
+
+El modo LAB del caso de estudio responde a esta pregunta:
+
+> ¿Entiendo mi sistema y puedo demostrar que funciona correctamente?
+
+Antes de diseñar tu instrumento, ejecuta los cinco escenarios del laboratorio. En cada uno trabaja con la secuencia:
+
+```text
+predicción → ejecución → observación → comparación → decisión
+```
+
+| Escenario | Fuerzas activas | Condición inicial | Predicción que debes escribir antes de ejecutar |
+|---|---|---|---|
+| 1 Inercia | Ninguna | Velocidad inicial distinta de cero | La velocidad debe conservar aproximadamente su dirección si no hay una fuerza que la cambie. |
+| 2 Fuerza constante +X | Viento | Velocidad inicial cercana a cero | La velocidad X debe crecer hacia valores positivos y el conjunto debe desplazarse hacia +X. |
+| 3 Atracción | Fuerza radial positiva | Atractor visible y velocidad inicial baja | La aceleración debe apuntar hacia el atractor; el signo positivo debe producir atracción. |
+| 4 Repulsión | Fuerza radial negativa | Misma configuración del escenario anterior | Al invertir el signo, la tendencia radial debe invertirse y las partículas deben alejarse. |
+| 5 Vórtice | Componente radial + tangencial | Partículas alrededor del atractor | Debe aparecer una componente de giro; no debe comportarse como una simple atracción radial. |
+
+Los presets `1..5` del modo LAB sirven para comprobar el comportamiento del sistema real.
+
+### Actividad 03: encargo de diseño
+
+Imagina que recibes el encargo de crear un instrumento visual para una presentación audiovisual. El instrumento no reproduce una animación terminada 
+ni reacciona automáticamente a la música. Tú escuchas, decides y conduces un sistema de fuerzas mientras la pieza sucede.
+
+Diseñarás una **coreografía generativa basada en fuerzas** y la interpretarás con la pieza [LesAlpx](https://music.youtube.com/watch?v=iuTk8x410mk&si=5uIiZlxhe_l92Fny) de 
+[Floating Points](https://www.youtube.com/@FloatingPointsMusic/videos) de su álbum [crush](https://pitchfork.com/reviews/albums/floating-points-crush/). 
+
+La música es una restricción común: todos trabajaremos con la misma obra, pero cada sistema, score y lectura de la obra deberá ser diferente.
+
+Tu encargo es:
+
+> Diseñar un instrumento visual basado en fuerzas, construirlo con ayuda de IA generativa usando como referencia el proyecto base de experimentación, verificar que su dinámica funciona y realizar con él una interpretación en tiempo real de *LesAlpx*.
+
+**Condiciones del encargo**
+
+| Debe ocurrir | No debe ocurrir |
+|---|---|
+| Las partículas deben cambiar porque cambian fuerzas o parámetros del sistema. | Controlar directamente las posiciones para dibujar una trayectoria previamente coreografiada. |
+| Debes poder explicar y probar al menos las fuerzas centrales de tu sistema. | Presentar una imagen atractiva sin poder decir qué modelo la produce. |
+| La pieza debe poder conducirse en tiempo real mediante pocos controles con significado. | Convertir el proyecto en un panel con decenas de sliders sin una función interpretativa clara. |
+| La música debe pasar por tu escucha, tu score y tus decisiones. | Usar kick, amplitud, beat o FFT como mecanismo principal de control automático. |
+| El comportamiento debe emerger de las condiciones dinámicas del sistema. | Usar una animación fija que solo simule una respuesta a la música. |
+| El modo LAB debe servir para comprender y verificar. | Saltar directamente a PERFORMANCE porque la imagen «se ve bien». |
+
+<Aside type="caution" title="No es un music visualizer">
+
+La cadena esperada no es «audio → parámetro visual». Es «música → percepción humana → decisión interpretativa → gesto → fuerza → comportamiento emergente».
+
+</Aside>
+
+**Caso de estudio y contrato técnico**
+
+Trabajarás a partir del repositorio base `forces-instrument-u3` que exploramos juntos previamente, PERO OJO, no es tu solución final. Tu mismo debes construir la solución final usando 
+IA generativa y tu criterio de diseño, verificación y modificación.
+
+El contrato técnico común es:
+
+```text
+Web + Three.js + WebGPURenderer + TSL + GPU Compute + Vite + publicación web
+```
+
+**Trabajar con IA sin entregar el criterio**
+
+La IA está permitida y es esperada. No la uses para pedir una obra terminada. Usa un ciclo de especificación, verificación y modificación:
+
+1. Define una intención o un comportamiento, no un estilo visual.
+2. Escribe la fuerza con una ecuación, un diagrama o una descripción direccional.
+3. Predice qué debería ocurrir con una condición inicial sencilla.
+4. Pide a la IA una modificación localizada dentro de la arquitectura existente, para eso tienes el caso de estudio y el contrato técnico.
+5. Exige que indique qué archivos y responsabilidades modifica.
+6. Aísla la fuerza nueva y prueba su signo, dirección, magnitud y límites.
+7. Compara la predicción con la observación y corrige lo necesario.
+8. Combina fuerzas solo después de comprenderlas por separado.
+9. Decide qué pocos parámetros tienen verdadero potencial expresivo.
+10. Registra en la bitácora qué aceptaste, qué cambiaste y qué descartaste de la propuesta de IA.
+
+
+**Score visual e interpretación**
+
+Antes de ensayar, construye un **score visual de interpretación** para *LesAlpx*. No tiene que parecer una partitura musical convencional. 
+Debe ser una representación temporal de cómo escuchas la pieza y qué quieres conducir.
+
+Puedes registrar organización, acumulación, tensión, estabilidad, transición, ruptura, dispersión, reorganización, transformación o resolución. El score 
+no debe indicar la posición exacta de las partículas. Debe expresar intenciones y decisiones sobre fuerzas.
+
+La relación que debes poder explicar es:
+
+```text
+escucha → intención → score → interpretación → fuerzas → comportamiento emergente
+```
+
+### Actividad 04: presentación grupal
+
+La presentación privilegia la interpretación en vivo. 
+
+**Entregables y bitácora**
+
+Antes de entrar a la sesión 4, la bitácora debe contener:
+
+1. **Instrumento funcional y publicado:** URL pública, modo LAB y modo PERFORMANCE.
+2. **Mapa del sistema:** estado, fuerzas, integración, render, controles y archivos donde se encuentran.
+3. **Ficha de fuerzas:** ecuación o descripción direccional, parámetros, predicciones y decisiones de diseño.
+4. **Registro de pruebas:** las cinco pruebas base y, al menos, una prueba específica de la fuerza o combinación central del estudiante.
+5. **Score visual:** tramos de *LesAlpx*, intenciones y controles que se conducirán.
+6. **Bitácora de IA:** prompts relevantes, cambios aceptados, correcciones, pruebas y decisiones de rechazo.
+7. **Autoevaluación ponderada:** tabla completa, aportes calculados y enlaces a evidencias.
+
+La bitácora no es un diario de frases generales. Debe permitir reconstruir cómo una intención se convirtió en un sistema verificable.
+
+**Autoevaluación ponderada**
+
+Completa esta tabla en tu bitácora **antes de la presentación**. Valora cada criterio entre 0 y 100 y enlaza la evidencia concreta que respalda tu valoración.
+
+| Criterio | Peso | Qué debe demostrar la evidencia | Valoración |
+|---|---:|---|---:|
+| **Trazabilidad y comprensión del sistema** | 25 | Puedo señalar y explicar estado, fuerzas, integración, render y controles; además puedo ubicar qué partes produjo o modificó la IA. | |
+| **Verificación del algoritmo de fuerzas** | 25 | Estudié en detalle el proyecto y aunque no comprenda toda la sintaxis, puedo identificar su arquitectura, sus partes, puedo aislar una fuerza central, formular una predicción, la ejecuté ya analicé, comparé el resultado, cambié deliberadamente un signo o parámetro y expliqué la diferencia. | | |
+| **Diseño de fuerzas e intención** | 20 | Las fuerzas y sus parámetros hacen perceptible una intención; el comportamiento surge de la dinámica y no de trayectorias previamente dibujadas. | |
+| **Instrumento, score e interpretación** | 15 | El score conecta la escucha con decisiones; escogí pocos controles expresivos y puedo conducir el sistema en vivo sin que el audio lo controle automáticamente. | |
+| **Experimentación y criterio frente a la IA** | 10 | Comparé alternativas, registré hallazgos y descartes, corregí propuestas de IA y puedo justificar por qué conservé la versión presentada. | |
+| **Entrega técnica y documentación** | 5 | la URL pública abre; la bitácora permite verificar el proceso. | |
+| **Total Puntos** | **???** | |
+
+
+Los criterios de **trazabilidad** y **verificación** son condiciones de suficiencia. No se consideran alcanzados por una captura bonita, una URL funcional o la afirmación «la IA lo hizo». 
+Si no puedes aislar, predecir, probar y modificar una fuerza, debes reconocerlo en la autoevaluación y explicarlo durante la sustentación.
+
+<Aside type="note" title="La autoevaluación se sustenta">
+
+La tabla no reemplaza la revisión docente. Es una hipótesis argumentada sobre tu propio trabajo. La valoración se contrasta con la bitácora, el prototipo, las pruebas y la demostración en vivo.
+
+</Aside>
