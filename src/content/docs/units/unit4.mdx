@@ -9,7 +9,8 @@ unitId: unit4
 
 ## Propósito
 
-Estudiar comportamientos periódicos y oscilatorios, incluyendo ángulos, rotación, ondas, movimiento armónico, péndulos y resortes. La unidad busca ampliar la comprensión del movimiento más allá del desplazamiento lineal.
+Estudiar comportamientos periódicos y oscilatoriosortes. La unidad busca ampliar la comprensión del movimiento más 
+allá del desplazamiento lineal y usarlo con fines expresivos.
 
 ## Evaluación
 
@@ -17,8 +18,160 @@ Esta unidad tiene un valor total de **12.5%** de la nota final del curso.
 
 ## Bitácora
 
-Durante la unidad cada estudiante debe registrar su proceso en la bitácora de GitHub, usando control de versión y dejando evidencia de experimentos, decisiones, avances y reflexiones.
+Durante la unidad cada estudiante debe registrar su proceso en la bitácora de GitHub, usando control de versión y 
+dejando evidencia de experimentos, decisiones, avances y reflexiones.
 
 ## Actividades
 
-Esta sección se irá completando semana a semana durante el desarrollo del curso.
+### Actividad 01: referentes para la unidad
+
+**Referente 1**:
+
+Te presente a Memo Akten [Memo Akten](https://www.memo.tv/), especialmente una obra de Memo bajo el título sombrilla de 
+[Simple Harmonic Motion](https://www.memo.tv/works/simple-harmonic-motion/) relacionada con el trabajo que haremos en esta unidad.
+
+**Referente 2**:
+
+[Este video](https://youtu.be/BH85KeKpNQQ?si=h6HIY39J0m5mwDe7) de Veritasium sobre el modelo de Kuramoto y en general sobre 
+la sincronización. 
+
+**Referente 3**:
+
+La simulación interactiva de sincronización de luciérnagas de Nicky Case [Fireflies](https://ncase.me/fireflies/).
+
+**Referente 4**:
+
+[Incredibox](https://www.incredibox.com/).
+
+
+### Actividad 02: encargo de diseño
+
+**Reto de diseño: sistema audiovisual performativo con Kuramoto**
+
+Diseña y desarrolla una **experiencia audiovisual interactiva en tiempo real para la Web** basada en una 
+población de osciladores acoplados mediante el **modelo de Kuramoto**.
+
+La experiencia debe permitir al usuario construir, configurar e intervenir un sistema de agentes con 
+identidad visual y sonora, y utilizarlo de manera performativa. El comportamiento colectivo debe transitar de 
+forma perceptible entre estados de **desorden, organización parcial y organización estable**, como consecuencia de 
+la dinámica del modelo y de las acciones del usuario.
+
+El propósito no es realizar una visualización de Kuramoto ni construir un secuenciador musical tradicional. 
+El reto consiste en transformar el comportamiento emergente del modelo en **material para una experiencia 
+audiovisual que pueda tocarse en tiempo real**.
+
+## Modelo obligatorio
+
+El sistema debe implementar como punto de partida el modelo de Kuramoto:
+
+$$
+\frac{d\theta_i}{dt}
+=
+\omega_i
++
+\frac{K}{N}
+\sum_{j=1}^{N}
+\sin(\theta_j-\theta_i)
+$$
+
+Cada estudiante debe poder explicar con claridad qué representan en su aplicación:
+
+$$
+\theta_i,\qquad \omega_i,\qquad K
+$$
+
+y cómo estas variables producen el comportamiento observado.
+
+Se permiten **variaciones o extensiones de Kuramoto**, pero deben estar claramente justificadas. La modificación debe 
+partir explícitamente del modelo original y el estudiante deberá explicar qué término modificó, por qué lo hizo, 
+qué comportamiento buscaba obtener y qué diferencia produce respecto al modelo básico.
+
+Por ejemplo, una modificación de las relaciones de fase, del acoplamiento entre agentes o de la topología de interacción 
+puede ser válida si responde a una intención concreta de diseño y puede ser sustentada desde el modelo.
+
+No se permite sustituir Kuramoto por otro algoritmo que produzca simplemente un resultado parecido.
+
+## Requisitos mínimos
+
+La aplicación deberá cumplir, como mínimo, con las siguientes condiciones:
+
+* **8 agentes simultáneos** gobernados por el sistema dinámico.
+* **4 personalidades audiovisuales diferentes**.
+* Cada agente deberá tener una **manifestación visual y una manifestación sonora** vinculadas a su comportamiento.
+* El usuario deberá poder modificar en tiempo real al menos **2 variables relacionadas con el modelo**, siendo obligatorio poder 
+intervenir (K).
+* Deberán existir al menos **2 formas diferentes de interacción performativa**, una que afecte el comportamiento global 
+del sistema y otra que permita intervenir agentes individuales.
+* Deberá existir al menos **1 mecanismo de perturbación** que permita alterar el estado de uno o varios agentes y 
+observar posteriormente la respuesta del colectivo.
+* La experiencia deberá permitir reconocer al menos **3 estados colectivos**: desorden, organización parcial y organización estable.
+* Deberá existir al menos **1 forma perceptible de comunicar el estado colectivo**. Puede ser visual, sonora, audiovisual o mediante un indicador explícito.
+
+## Personalidad audiovisual
+
+Los agentes no deben diferenciarse únicamente mediante cambios superficiales de color o altura musical.
+
+Una personalidad audiovisual debe resultar reconocible mediante decisiones relacionadas con su comportamiento. 
+Puede involucrar, por ejemplo, forma, movimiento, ritmo, timbre, envolvente, transformación, respuesta a la fase, 
+relación con otros agentes o reacción frente a las intervenciones del usuario.
+
+No es obligatorio utilizar personajes figurativos. Los agentes pueden ser criaturas, organismos, formas abstractas, 
+mecanismos, instrumentos, entidades geométricas u otras propuestas coherentes con la experiencia diseñada.
+
+## Experiencia performativa
+
+La aplicación debe poder **tocarse**.
+
+El usuario no debe limitarse a observar una simulación o modificar sliders. Debe poder configurar el sistema y posteriormente 
+intervenirlo durante su ejecución, provocando cambios perceptibles en su comportamiento.
+
+La experiencia debe hacer posible explorar deliberadamente situaciones como: desorden -> organización -> estabilidad, pero 
+también romper temporalmente esa estabilidad y observar cómo el sistema responde, se reorganiza o encuentra un nuevo estado.
+
+## Relación entre algoritmo, sonido e imagen
+
+Kuramoto debe tener consecuencias perceptibles reales.
+
+Las variables y estados producidos por el modelo pueden controlar eventos, movimiento, ritmo, sonido, intensidad, transformación, 
+relaciones espaciales, timbre u otras propiedades de la experiencia.
+
+No se espera que todos los proyectos utilicen estas posibilidades de la misma manera. Lo importante es que exista una relación 
+clara entre el modelo dinámico, el comportamiento y la experiencia audiovisual
+
+Si el modelo de Kuramoto pudiera eliminarse y reemplazarse por un temporizador, un reloj global o una secuencia predeterminada sin 
+alterar sustancialmente la experiencia, entonces el modelo no está cumpliendo un papel suficientemente importante.
+
+## Referentes
+
+Experiencias como **Incredibox** pueden servir como referencia por la claridad de sus identidades audiovisuales, la 
+facilidad para construir una configuración musical y su carácter performativo.
+
+El objetivo **no es reproducir Incredibox**, su interfaz, sus personajes ni su funcionamiento.
+
+La oportunidad consiste en explorar algo diferente: un sistema en el que la organización temporal no esté completamente 
+predeterminada, sino que emerja de la interacción entre agentes gobernados por un modelo dinámico.
+
+## Pregunta central de diseño
+
+Durante todo el proceso, el proyecto debería poder responder:
+
+**¿Cómo convertir un modelo de autoorganización en un instrumento audiovisual performativo?**
+
+Y durante la sustentación deberá poder responder además:
+
+> **¿Qué hace Kuramoto en esta experiencia que no podría resolverse simplemente mediante un reloj global, un secuenciador o temporizadores independientes?**
+
+La calidad del proyecto dependerá de que la respuesta pueda demostrarse directamente al interactuar con el sistema.
+
+
+### Actividad 03: presentación grupal
+
+Haremos la actividad de presentación grupal. Te pediré que antes de la presentación realices la autoevaluación de tu proyecto:
+
+1. Leí y verifiqué que mi proyecto cumple con los requisitos mínimos de la unidad: 25 puntos.
+2. Puedo explicar claramente qué representa cada variable del modelo de Kuramoto en mi proyecto: 25 puntos.
+3. Puedo explicar claramente cómo las variables del modelo producen el comportamiento observado en mi proyecto: 25 puntos.
+4. Puedo demostrar que mi proyecto cumple con los objetivos establecidos en la unidad: 25 puntos.
+
+
+

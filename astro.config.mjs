@@ -40,8 +40,8 @@ export default defineConfig({
 						// Each item here is one entry in the navigation menu.
 						{ label: 'Unidad 1: Aleatoriedad', slug: 'units/unit1',},
 						{ label: 'Unidad 2: Movimiento', slug: 'units/unit2'},
-						{ label: 'Unidad 3: Fuerzas', slug: 'units/unit3', badge: 'New'},
-						{ label: 'Unidad 4: Oscilaciones', slug: 'units/unit4' },
+						{ label: 'Unidad 3: Fuerzas', slug: 'units/unit3'},
+						{ label: 'Unidad 4: Oscilaciones', slug: 'units/unit4',badge: 'New'},
 						{ label: 'Unidad 5: Partículas', slug: 'units/unit5' },
 						{ label: 'Unidad 6: Agentes', slug: 'units/unit6' },
 						{ label: 'Unidad 7: Físicas', slug: 'units/unit7' },
