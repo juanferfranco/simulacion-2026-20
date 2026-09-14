@@ -5,11 +5,19 @@ unitId: unit6
 
 ## Agentes autónomos
 
-**Alineación con el libro:** unidad 5 de [*The Nature of Code*](https://natureofcode.com/autonomous-agents/)
+**Alineación con el libro:** capítulo 5 de [*The Nature of Code*](https://natureofcode.com/autonomous-agents/).
 
 ## Propósito
 
-Comprender y diseñar agentes autónomos capaces de tomar decisiones simples a partir de reglas de comportamiento, percepción del entorno y objetivos de movimiento. La unidad busca conectar fuerzas, movimiento y toma de decisiones en sistemas interactivos.
+Diseñar y construir un instrumento visual para interpretar con él una pieza musical de tu elección. La paleta será **steering behaviors, incluido flocking, flow fields e Interactive Physarum**.
+
+En unidades anteriores exploramos interacción y emergencia. Ahora estudiaremos explícitamente qué puede percibir cada agente y cómo utiliza esa información para actuar. Trabajaremos con agentes que:
+
+1. Tienen una capacidad limitada para percibir su entorno.
+2. Procesan esa información y calculan una acción según sus reglas y su estado.
+3. Se organizan sin un agente líder ni trayectorias prescritas para todo el colectivo.
+
+La persona permanece en el ciclo: escucha la música, observa el sistema, decide cómo intervenir y responde a lo que emerge.
 
 ## Evaluación
 
@@ -17,8 +25,67 @@ Esta unidad tiene un valor total de **12.5%** de la nota final del curso.
 
 ## Bitácora
 
-Durante la unidad cada estudiante debe registrar su proceso en la bitácora de GitHub, usando control de versión y dejando evidencia de experimentos, decisiones, avances y reflexiones.
+Registra en tu bitácora de GitHub los experimentos, decisiones, pruebas y ensayos. La bitácora es un espacio de trabajo y reflexión; no se califica por separado. Antes de la presentación, incluye la autoevaluación sustentada con evidencias.
 
 ## Actividades
 
-Esta sección se irá completando semana a semana durante el desarrollo del curso.
+### Actividad 01: steering behaviors, flow fields y flocking
+
+**Sesión 1.** 
+
+Analizaremos los algoritmos y sus posibilidades expresivas con explicaciones y dibujos en un tablero de Excalidraw.
+
+| Material | Qué estudiaremos |
+|---|---|
+| [Agentes autónomos — *The Nature of Code*](https://natureofcode.com/autonomous-agents/) | Percepción limitada, estado del agente y cálculo de una acción. |
+| [*Steering Behaviors for Autonomous Characters* — Craig Reynolds](https://www.red3d.com/cwr/papers/1999/gdc99steer.pdf) | Velocidad deseada, steering y combinación de comportamientos. |
+| [Trabajo de Sofía](https://editor.p5js.org/juanferfranco/full/FDhBzlroM) | Referente para explorar flow fields. |
+| [*Flow Fields* — Tyler Hobbs](https://www.tylerxhobbs.com/words/flow-fields) | Construcción de campos y posibilidades de composición visual. |
+| [Birds — ejemplos de Three.js](https://threejs.org/examples/?q=birds) | Flocking: separación, alineación y cohesión como comportamientos de steering. |
+
+En cada caso, identifica qué percibe el agente, cómo calcula su movimiento y qué podrías intervenir en tiempo real. Para flow fields, distingue el campo de direcciones de la regla con la que el agente lo consulta y orienta su movimiento.
+
+### Actividad 02: explorar Interactive Physarum
+
+**Sesión 2.** 
+
+Exploraremos el material de [Interactive Physarum de Bleuje](https://github.com/Bleuje/interactive-physarum), sus ejemplos, controles y [explicación del algoritmo](https://bleuje.com/physarum-explanation/).
+
+Al finalizar, introduciremos el encargo de diseño de la actividad 03.
+
+### Actividad 03: encargo de diseño
+
+**Reto de diseño: interpretar música con agentes autónomos**
+
+Diseña y desarrolla un **instrumento visual para la Web e interpreta en tiempo real una pieza musical que te guste. Selecciona y combina comportamientos de la paleta según tu lectura de la música. No es obligatorio utilizar los tres recursos.
+
+**Tu propuesta deberá:**
+
+* definir qué perciben los agentes, cuáles son sus límites y cómo calculan sus acciones;
+* producir comportamientos emergentes mediante las reglas seleccionadas y permitir explicar qué aporta su combinación;
+* ofrecer pocos controles expresivos para intervenir la percepción, las reglas o el entorno durante la ejecución;
+* mantener la interpretación humana como mecanismo principal de conducción: la escucha y tus decisiones deben orientar los cambios, sin delegarlos a una secuencia automática o al análisis del audio;
+* funcionar en tiempo real y en pantalla completa para la presentación.
+
+Puedes transformar el entorno y los parámetros comunes mientras cada agente sigue calculando su respuesta. Tus controles deben tener consecuencias perceptibles en el comportamiento del sistema.
+
+**Preparación y ensayo**
+
+1. Elige la música y define qué quieres expresar mediante el comportamiento visual.
+2. Construye un prototipo y comprueba una regla central: predice, modifica un parámetro y explica el cambio observado.
+3. Prepara un **score visual** que relacione pasajes musicales, intenciones y posibles intervenciones.
+
+El score orienta la interpretación. Durante la ejecución, escucha y observa para decidir cuándo intervenir, sostener un estado o cambiar de dirección.
+
+### Actividad 04: presentación del performance
+
+**Sesión 4.** 
+
+Presentarás tu interpretación en vivo. **Antes de la sesión 4 debes tener terminada en tu bitácora la autoevaluación.** Valora cada criterio de 0 a 25 puntos y susténtalo con evidencias del prototipo, las pruebas o los ensayos:
+
+1. **Cumplimiento del encargo:** mi instrumento utiliza tecnología web, funciona en tiempo real y permite interpretar la pieza musical elegida.
+2. **Comprensión y verificación:** puedo explicar y defender cómo está construido el sistema, qué perciben los agentes y cómo calculan sus acciones. Puedo predecir y verificar los cambios al modificar un parámetro.
+3. **Diseño e intención:** puedo justificar la selección y combinación de comportamientos y relacionarlos con mi interpretación musical.
+4. **Interpretación humana:** mi score y mis controles permiten conducir el sistema en vivo y responder a su comportamiento.
+
+**Total: 100 puntos.** La autoevaluación se sustenta durante la presentación.
