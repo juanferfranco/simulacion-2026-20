@@ -3,23 +3,105 @@ title: Unidad 7
 unitId: unit7
 ---
 
-## Sistemas complejos
+## Bibliotecas de física: tipografía e identidad
 
-**Alineación con el libro:** unidad 6 de [*The Nature of Code*](https://natureofcode.com/complex-systems/)
+**Alineación con el libro:** capítulo 6 de [*The Nature of Code*](https://natureofcode.com/physics-libraries/).
 
 ## Propósito
 
-Explorar sistemas en los que interacciónes locales simples producen comportamientos globales complejos. La unidad aborda modelos emergentes como bandadas, enjambres u otros sistemas basados en reglas.
+Diseñar una pieza tipográfica dinámica en la que el comportamiento físico de las letras del nombre de una empresa comunique un atributo de su identidad.
+
+En las unidades anteriores exploramos cómo las relaciones y el movimiento pueden construir significado. Ahora trabajaremos con bibliotecas de física para dar a las letras peso, fricción, capacidad de rebotar y vínculos que condicionen su movimiento. Estudiaremos las posibilidades de estas herramientas y los conceptos necesarios para elegirlas, dirigir su comportamiento y evaluar el resultado.
 
 ## Evaluación
 
 Esta unidad tiene un valor total de **12.5%** de la nota final del curso.
 
-
 ## Bitácora
 
-Durante la unidad cada estudiante debe registrar su proceso en la bitácora de GitHub, usando control de versión y dejando evidencia de experimentos, decisiones, avances y reflexiones.
+Registra en tu bitácora de GitHub los referentes, bocetos, experimentos, decisiones y pruebas. La bitácora es un espacio de trabajo y reflexión; no se califica por separado. Antes de la presentación, incluye la autoevaluación sustentada con evidencias.
 
 ## Actividades
 
-Esta sección se irá completando semana a semana durante el desarrollo del curso.
+### Actividad 01: referentes y posibilidades de las bibliotecas de física
+
+**Word as Image: las letras construyen significado**
+
+Conocerás el proyecto [*Word as Image* de Ji Lee](https://pleaseenjoy.com/word-as-image/). Su reto consiste en visualizar el significado de una palabra utilizando únicamente los elementos gráficos de sus letras, sin añadir partes externas.
+
+Observa cómo la posición, la escala, el espacio y la transformación de las letras construyen una idea. Analizaremos qué hace que esa idea pueda reconocerse y cómo podríamos incorporar el tiempo y el comportamiento físico a este ejercicio.
+
+Al trabajar con el nombre de una empresa, el significado puede venir de lo que hace, representa o promete. La elección del comportamiento partirá de esa identidad.
+
+**Herramientas y comportamientos**
+
+Exploraremos ejemplos de colisiones, equilibrio, fricción, rebote y vínculos entre cuerpos. Estos recursos permiten diseñar distintas respuestas ante una fuerza o una perturbación.
+
+| Material | Qué exploraremos |
+|---|---|
+| [Bibliotecas de física — *The Nature of Code*](https://natureofcode.com/physics-libraries/) | Cuándo conviene utilizar un motor de física y cómo se relacionan cuerpos, fuerzas, colisiones y restricciones. |
+| [Matter.js: ejemplos y documentación](https://brm.io/matter-js/) | Una ruta de física 2D que podemos combinar con p5.js para trabajar con cuerpos y vínculos. |
+| [Rapier](https://rapier.rs/docs/) y su [integración con Three.js](https://threejs.org/docs/pages/RapierPhysics.html) | Posibilidades de física 3D y su representación visual con Three.js. |
+
+En estas combinaciones, el motor de física calcula el estado de los cuerpos y p5.js o Three.js los representan visualmente. La forma que dibujamos y la geometría que utilizamos para calcular colisiones pueden 
+ser diferentes, por ejemplo, una letra puede representarse mediante uno o varios cuerpos simplificados.
+
+Elige un ejemplo y modifica una propiedad física. Antes de ejecutarlo, predice qué cambiará. Compara el resultado con tu predicción y explica cómo esa variación podría cambiar lo que comunica una letra. Registra la prueba en tu bitácora.
+
+### Actividad 02: encargo de diseño
+
+**Reto de diseño: una identidad que se expresa mediante el comportamiento**
+
+Diseña y desarrolla una **pieza tipográfica dinámica para la Web** que utilice las letras del nombre de una empresa y su comportamiento físico para comunicar un atributo específico de su identidad.
+
+**Define el encargo**
+
+Elige una empresa y precisa:
+
+1. Qué hace y a qué público se dirige.
+2. Qué atributo de su identidad quieres comunicar y en qué te basas para elegirlo.
+3. Dónde se utilizaría la pieza: por ejemplo, una portada web, una presentación o una pantalla en un evento.
+4. Qué comportamiento físico podría expresar ese atributo.
+
+Por ejemplo, podrías explorar la resiliencia mediante letras que recuperan su organización después de una perturbación, o la conexión mediante vínculos que transmiten movimiento entre ellas. Estas relaciones son hipótesis de diseño que debes poner a prueba con otras personas.
+
+**Tu propuesta deberá:**
+
+* construir la pieza con las letras del nombre de la empresa; puedes transformarlas, reorganizarlas o fragmentarlas, conservando una relación reconocible con el nombre;
+* utilizar una biblioteca de física para producir una parte sustancial del comportamiento que comunica la identidad;
+* permitir explicar qué cuerpos, fuerzas, colisiones o vínculos intervienen y por qué los elegiste;
+* cuidar la composición, el ritmo y los momentos de lectura del nombre según el contexto de uso;
+* funcionar en tiempo real en la Web y permitir reiniciar la experiencia para presentarla y probarla.
+
+Las fuerzas, los apoyos y las restricciones pueden ser invisibles. Los elementos gráficos que construyen el significado deben provenir de las letras. Puedes elegir la biblioteca y trabajar en 2D o 3D según lo que necesite tu propuesta.
+
+**Desarrollo y pruebas**
+
+1. Boceta la relación entre las letras, el atributo elegido y el comportamiento físico.
+2. Construye un prototipo y prueba cómo cambia al modificar un parámetro relevante para tu intención.
+3. Muestra la pieza a otra persona antes de explicar el concepto. Pregunta qué percibe, contrasta su lectura con tu intención y ajusta la propuesta.
+
+Como prueba de pertinencia, considera: **si sustituyes el nombre por el de otra empresa, ¿El comportamiento sigue siendo igual de adecuado?** Usa esta pregunta para revisar qué aporta tu diseño a la identidad elegida.
+
+El código puede construirse con apoyo de IA. Debes poder comprender, intervenir, justificar y explicar el sistema que diseñaste. Documenta las decisiones y pruebas que te permitan sostener esa explicación.
+
+### Actividad 03: presentación grupal
+
+Mostrarás al grupo tu pieza funcionando. Primero la observaremos y compartiremos qué comunica; después explicarás brevemente:
+
+1. La empresa, el atributo elegido y el contexto de uso.
+2. Cómo las decisiones tipográficas y el comportamiento físico expresan esa identidad.
+3. Qué aprendiste de las pruebas y cómo ajustaste la propuesta.
+
+Durante la presentación, predice y demuestra qué sucede al modificar un parámetro físico relevante. Explica cómo ese cambio afecta tanto al sistema como a lo que comunica.
+
+**Antes de presentar, debes tener terminada en tu bitácora la autoevaluación.** Valora cada criterio de 0 a 25 puntos y susténtalo con evidencias:
+
+1. **Cumplimiento del encargo:** mi pieza utiliza las letras del nombre de una empresa, incorpora una biblioteca de física y funciona en tiempo real en la Web para el contexto definido.
+2. **Comprensión y verificación:** puedo explicar cómo está construido el sistema, justificar sus componentes y predecir y verificar el efecto de modificar un parámetro físico.
+3. **Comportamiento e identidad:** puedo justificar la relación entre el atributo elegido y el comportamiento de las letras, y contrastarla con lo observado en las pruebas con otras personas.
+4. **Resolución tipográfica y temporal:** la composición, las transformaciones, el ritmo y los momentos de lectura permiten reconocer el nombre y sostienen la intención de la pieza.
+
+**Total: 100 puntos.** La autoevaluación se sustenta durante la presentación.
+
+> ¿Cómo puede el comportamiento físico de las letras expresar la identidad de una empresa?
