@@ -45,7 +45,7 @@ export default defineConfig({
 						{ label: 'Unidad 5: Partículas', slug: 'units/unit5'},
 						{ label: 'Unidad 6: Agentes', slug: 'units/unit6'},
 						{ label: 'Unidad 7: Tipografía jugable', slug: 'units/unit7',badge: 'New'  },
-						{ label: 'Unidad 8: Integración', slug: 'units/unit8'},
+						{ label: 'Unidad 8: Integración', slug: 'units/unit8',badge: 'New'  },
 						// Marcar una novedad en una unidad
 						// { label: 'Unidad 8', slug: 'units/unit8',badge: 'New' },
 					],
